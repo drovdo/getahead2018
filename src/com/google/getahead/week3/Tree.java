@@ -2,15 +2,6 @@ package com.google.getahead.week3;
 
 public class Tree {
 
-	private class IntegerHolder {
-		private int integer;
-
-		public IntegerHolder(int integer) {
-			this.integer = integer;
-		}
-	}
-
-
 	private TreeNode root;
 
 	public Tree() {
@@ -28,15 +19,15 @@ public class Tree {
 
 		IntegerHolder longestPath = new IntegerHolder(0);
 		walk(root, longestPath);
-		return longestPath.integer;
+		return longestPath.getInteger();
 	}
 
 	private void walk(TreeNode node, IntegerHolder longestPath) {
 		for(TreeNode child : node.getChildren()) {
 			if(child.getValue() == node.getValue() + 1) {
 				child.incrementCurrentPathLength(node.getCurrentPathLength());
-				if(longestPath.integer < child.getCurrentPathLength()) {
-					longestPath.integer = child.getCurrentPathLength();
+				if(longestPath.getInteger() < child.getCurrentPathLength()) {
+					longestPath.setInteger(child.getCurrentPathLength());
 				}
 			}
 			walk(child, longestPath);
